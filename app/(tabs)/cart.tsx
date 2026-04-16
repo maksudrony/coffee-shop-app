@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons, FontAwesome, MaterialIcons } from '@expo/vector-icons';
-import CustomButton from '../components/CustomButton';
+import CustomButton from '../../components/CustomButton';
 
 export default function CartScreen() {
   const router = useRouter();
@@ -12,12 +12,8 @@ export default function CartScreen() {
   return (
     <View className="flex-1 bg-light">
       {/* Header */}
-      <View className="flex-row justify-between items-center px-6 pt-16 pb-4 bg-light z-10">
-        <TouchableOpacity onPress={() => router.back()} className="w-10 h-10 items-center justify-center">
-          <Ionicons name="chevron-back" size={24} color="#2F2D2C" />
-        </TouchableOpacity>
+      <View className="items-center px-6 pt-16 pb-4 bg-light z-10 w-full mb-2">
         <Text className="text-xl font-bold text-blackText">Order</Text>
-        <View className="w-10 h-10" />
       </View>
 
       <ScrollView className="flex-1 px-6 pb-20" showsVerticalScrollIndicator={false}>
@@ -54,7 +50,7 @@ export default function CartScreen() {
         {/* Cart Item */}
         <View className="flex-row items-center mb-6">
           <Image 
-            source={require('../assets/images/coffee-mocha.png')} 
+            source={require('../../assets/images/coffee-mocha.png')} 
             className="w-16 h-16 rounded-xl"
           />
           <View className="ml-4 flex-1">
@@ -98,7 +94,7 @@ export default function CartScreen() {
       </ScrollView>
 
       {/* Bottom Sticky Payment & Order button */}
-      <View className="px-6 py-4 bg-white rounded-t-3xl border border-gray-100 shadow-xl pb-10">
+      <View className="px-6 py-4 bg-white rounded-t-3xl border border-gray-100 shadow-xl pb-[100px]">
         <View className="flex-row items-center justify-between mb-4">
           <View className="flex-row items-center gap-2">
             <Ionicons name="wallet-outline" size={24} color="#C67C4E" />

@@ -1,7 +1,8 @@
 // Expo router uses Tabs from 'expo-router'
 import { Tabs as ExpoTabs } from 'expo-router';
 import { FontAwesome5, FontAwesome, Ionicons } from '@expo/vector-icons';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
+import { useCart } from '../../context/CartContext';
 
 export default function TabLayout() {
   return (
@@ -68,6 +69,25 @@ export default function TabLayout() {
               {focused && <View className="w-1.5 h-1.5 bg-primary rounded-full mt-1" />}
             </View>
           ),
+        }}
+      />
+      <ExpoTabs.Screen
+        name="cart"
+        options={{
+          tabBarIcon: ({ color, focused }) => {
+            const { cartCount } = useCart();
+            return (
+              <View className="items-center justify-center h-full">
+                <Ionicons name="cart-outline" size={26} color={color} />
+                {cartCount > 0 && (
+                  <View className="absolute top-1 -right-2 bg-red-500 min-w-[18px] h-[18px] rounded-full items-center justify-center px-1">
+                    <Text className="text-white text-[10px] font-bold">{cartCount}</Text>
+                  </View>
+                )}
+                {focused && <View className="w-1.5 h-1.5 bg-primary rounded-full mt-1" />}
+              </View>
+            );
+          },
         }}
       />
     </ExpoTabs>
