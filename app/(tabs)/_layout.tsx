@@ -1,35 +1,75 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+// Expo router uses Tabs from 'expo-router'
+import { Tabs as ExpoTabs } from 'expo-router';
+import { FontAwesome5, FontAwesome, Ionicons } from '@expo/vector-icons';
+import { View } from 'react-native';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
+    <ExpoTabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          backgroundColor: '#FFFFFF',
+          borderTopLeftRadius: 24,
+          borderTopRightRadius: 24,
+          height: 80,
+          position: 'absolute',
+          borderTopWidth: 0,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: -2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 10,
+          elevation: 10,
+        },
+        tabBarActiveTintColor: '#C67C4E',
+        tabBarInactiveTintColor: '#8D8D8D',
+      }}
+    >
+      <ExpoTabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <View className="items-center justify-center h-full">
+              <Ionicons name="home" size={24} color={color} />
+              {focused && <View className="w-1.5 h-1.5 bg-primary rounded-full mt-1" />}
+            </View>
+          ),
         }}
       />
-      <Tabs.Screen
-        name="explore"
+      <ExpoTabs.Screen
+        name="wishlist"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <View className="items-center justify-center h-full">
+              <Ionicons name="heart-outline" size={26} color={color} />
+              {focused && <View className="w-1.5 h-1.5 bg-primary rounded-full mt-1" />}
+            </View>
+          ),
         }}
       />
-    </Tabs>
+      <ExpoTabs.Screen
+        name="order"
+        options={{
+          tabBarIcon: ({ color, focused }) => (
+            <View className="items-center justify-center h-full">
+              <Ionicons name="bag-handle-outline" size={24} color={color} />
+              {focused && <View className="w-1.5 h-1.5 bg-primary rounded-full mt-1" />}
+            </View>
+          ),
+        }}
+      />
+      <ExpoTabs.Screen
+        name="notification"
+        options={{
+          tabBarIcon: ({ color, focused }) => (
+            <View className="items-center justify-center h-full">
+              <Ionicons name="notifications-outline" size={24} color={color} />
+              {focused && <View className="w-1.5 h-1.5 bg-primary rounded-full mt-1" />}
+            </View>
+          ),
+        }}
+      />
+    </ExpoTabs>
   );
 }
