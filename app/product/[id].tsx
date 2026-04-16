@@ -20,6 +20,7 @@ export default function ProductDetailScreen() {
       text2: 'Caffe Mocha was successfully added to your cart.',
       visibilityTime: 2000,
     });
+    router.push('/(tabs)/wishlist');
   };
 
   const SIZE_OPTIONS = ['S', 'M', 'L'];

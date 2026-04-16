@@ -94,7 +94,7 @@ export default function CartScreen() {
       </ScrollView>
 
       {/* Bottom Sticky Payment & Order button */}
-      <View className="px-6 py-4 bg-white rounded-t-3xl border border-gray-100 shadow-xl pb-10">
+      <View className="px-6 py-4 bg-white rounded-t-3xl border border-gray-100 shadow-xl pb-[100px]">
         <View className="flex-row items-center justify-between mb-4">
           <View className="flex-row items-center gap-2">
             <Ionicons name="wallet-outline" size={24} color="#C67C4E" />
