@@ -7,6 +7,7 @@ import '../global.css';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
 import { CartProvider } from '../context/CartContext';
+import { WishlistProvider } from '../context/WishlistContext';
 import Toast from 'react-native-toast-message';
 
 export const unstable_settings = {
@@ -18,7 +19,8 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <CartProvider>
+      <WishlistProvider>
+        <CartProvider>
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="index" />
           <Stack.Screen name="(auth)" />
@@ -27,7 +29,8 @@ export default function RootLayout() {
         </Stack>
         <StatusBar style="auto" />
         <Toast topOffset={60} />
-      </CartProvider>
+        </CartProvider>
+      </WishlistProvider>
     </ThemeProvider>
   );
 }

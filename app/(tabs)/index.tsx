@@ -27,13 +27,13 @@ export default function HomeScreen() {
           <View>
             <Text className="text-grayText text-xs font-semibold">Location</Text>
             <View className="flex-row items-center mt-1">
-              <Text className="text-white text-md font-semibold font-bold mr-1">Bilzen, Tanjungbalai</Text>
+              <Text className="text-white text-md font-semibold font-bold mr-1">Dhaka, Bangladesh</Text>
               <Ionicons name="chevron-down" size={16} color="white" />
             </View>
           </View>
           <View className="w-11 h-11 rounded-xl overflow-hidden bg-white">
-            <Image 
-              source={require('../../assets/images/avatar.png')} 
+            <Image
+              source={require('../../assets/images/avatar.png')}
               className="w-full h-full"
             />
           </View>
@@ -43,8 +43,8 @@ export default function HomeScreen() {
         <View className="flex-row items-center">
           <View className="flex-1 flex-row items-center bg-[#313131] rounded-2xl px-4 h-14" style={{ borderWidth: 1, borderColor: '#555' }}>
             <Feather name="search" size={20} color="white" />
-            <TextInput 
-              placeholder="Search coffee" 
+            <TextInput
+              placeholder="Search coffee"
               placeholderTextColor="#9B9B9B"
               className="flex-1 ml-3 text-white text-base"
             />
@@ -59,31 +59,31 @@ export default function HomeScreen() {
         {/* Promo Banner */}
         <View className="px-6 mb-6">
           <View className="w-full h-36 rounded-2xl overflow-hidden items-start justify-center p-6 bg-[#D1C9C5]">
-            <Image 
-              source={require('../../assets/images/home-screen-banner.png')} 
+            <Image
+              source={require('../../assets/images/home-screen-banner.png')}
               className="absolute w-full h-full"
               style={{ opacity: 0.5, resizeMode: 'cover' }}
             />
-             <View className="bg-[#ED735B] px-2 py-1 rounded-[8px] mb-2 z-10">
-                <Text className="text-white font-bold text-xs">Promo</Text>
-             </View>
-             <Text className="text-white text-3xl font-extrabold w-3/4 leading-tight shadow-md z-10" style={{ textShadowColor: 'black', textShadowRadius: 6 }}>
-               Buy one get one FREE
-             </Text>
+            <View className="bg-[#ED735B] px-2 py-1 rounded-[8px] mb-2 z-10">
+              <Text className="text-white font-bold text-xs">Promo</Text>
+            </View>
+            <Text className="text-white text-3xl font-extrabold w-3/4 leading-tight shadow-md z-10" style={{ textShadowColor: 'black', textShadowRadius: 6 }}>
+              Buy one get one FREE
+            </Text>
           </View>
         </View>
 
         {/* Categories */}
-        <CategoryTabs 
-          categories={CATEGORIES} 
-          activeCategory={activeCategory} 
-          onSelect={setActiveCategory} 
+        <CategoryTabs
+          categories={CATEGORIES}
+          activeCategory={activeCategory}
+          onSelect={setActiveCategory}
         />
 
         {/* Grid */}
         <View className="px-6 pb-24 mt-2 flex-row flex-wrap justify-between">
           {PRODUCTS.map(product => (
-            <ProductCard 
+            <ProductCard
               key={product.id}
               {...product}
               imageUrl={product.image}

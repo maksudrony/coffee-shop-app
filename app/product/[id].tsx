@@ -5,12 +5,27 @@ import { Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icon
 import Toast from 'react-native-toast-message';
 import CustomButton from '../../components/CustomButton';
 import { useCart } from '../../context/CartContext';
+import { useWishlist } from '../../context/WishlistContext';
 
 export default function ProductDetailScreen() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const { addToCart } = useCart();
+  const { isWishlisted, toggleWishlist } = useWishlist();
   const [selectedSize, setSelectedSize] = useState('M');
+
+  const currentId = (id as string) || 'coffee-mocha';
+  const loved = isWishlisted(currentId);
+
+  const handleToggleWishlist = () => {
+    toggleWishlist(currentId);
+    Toast.show({
+      type: loved ? 'info' : 'success',
+      text1: loved ? 'Removed from Wishlist' : 'Added to Wishlist',
+      text2: loved ? 'Item was removed.' : 'Item successfully saved!',
+      visibilityTime: 2000,
+    });
+  };
 
   const handleAddToCart = () => {
     addToCart();
@@ -20,7 +35,7 @@ export default function ProductDetailScreen() {
       text2: 'Caffe Mocha was successfully added to your cart.',
       visibilityTime: 2000,
     });
-    router.push('/(tabs)/wishlist');
+    router.push('/(tabs)/cart');
   };
 
   const SIZE_OPTIONS = ['S', 'M', 'L'];
@@ -34,8 +49,8 @@ export default function ProductDetailScreen() {
             <Ionicons name="chevron-back" size={24} color="#2F2D2C" />
           </TouchableOpacity>
           <Text className="text-xl font-bold text-blackText">Detail</Text>
-          <TouchableOpacity className="w-10 h-10 items-center justify-center">
-            <Ionicons name="heart-outline" size={24} color="#2F2D2C" />
+          <TouchableOpacity onPress={handleToggleWishlist} className="w-10 h-10 items-center justify-center">
+            <Ionicons name={loved ? "heart" : "heart-outline"} size={24} color={loved ? "#C67C4E" : "#2F2D2C"} />
           </TouchableOpacity>
         </View>
 
