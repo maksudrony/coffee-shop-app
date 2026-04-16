@@ -14,7 +14,7 @@ export default function SplashScreen() {
     // Simulate auth check / splash duration
     const timer = setTimeout(() => {
       // Mocking check: routing to Get Started or Auth
-      router.replace('/(auth)/sign-in');
+      router.replace('/(auth)/onboarding');
     }, 2500);
     
     return () => clearTimeout(timer);
