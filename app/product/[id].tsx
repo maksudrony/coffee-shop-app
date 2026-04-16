@@ -2,12 +2,25 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import Toast from 'react-native-toast-message';
 import CustomButton from '../../components/CustomButton';
+import { useCart } from '../../context/CartContext';
 
 export default function ProductDetailScreen() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
+  const { addToCart } = useCart();
   const [selectedSize, setSelectedSize] = useState('M');
+
+  const handleAddToCart = () => {
+    addToCart();
+    Toast.show({
+      type: 'success',
+      text1: 'Added to Cart',
+      text2: 'Caffe Mocha was successfully added to your cart.',
+      visibilityTime: 2000,
+    });
+  };
 
   const SIZE_OPTIONS = ['S', 'M', 'L'];
 
@@ -96,7 +109,7 @@ export default function ProductDetailScreen() {
           <Text className="text-primary text-2xl font-bold">$ 4.53</Text>
         </View>
         <View className="flex-1">
-          <CustomButton title="Buy Now" onPress={() => router.push('/cart')} />
+          <CustomButton title="Add to Cart" onPress={handleAddToCart} />
         </View>
       </View>
     </View>
